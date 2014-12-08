@@ -1,3 +1,5 @@
+package Assignment04;
+
 import java.util.*;
 
 public class Prob3 {
@@ -19,18 +21,18 @@ public class Prob3 {
 		TreeSet<HuffmanTree> con = new TreeSet<HuffmanTree>();
 		
 		for(int i = 0; i < symbols.length; i++) {
-			System.out.println(symbols[i].symbol + " " + symbols[i].frequency);
+			
 			con.add(new HuffmanTree(symbols[i]));
 		}
-		System.out.println(con.size());
+		
 		while(con.size() > 1) {
-			System.out.print(con.size() + " ");
+			
 			HuffmanTree l = con.first();
 			con.remove(l);
 			
 			HuffmanTree r = con.first();
 			con.remove(r);
-			System.out.println(l.symbol +  " " + l.frequency +  " " + r.symbol +  " " + r.frequency);
+			
 			HuffmanTree root = new HuffmanTree(l, r);
 			con.add(root);
 		}
@@ -68,8 +70,14 @@ class Code implements Comparable<Code>{
 			
 			return (int) (this.symbol - other.symbol);
 		}
-		
-		return (int) (this.frequency - other.frequency);
+		else if(this.frequency > other.frequency) {
+			
+			return 1;
+		}
+		else {
+			
+			return -1;
+		}
 	}
 }
 
@@ -90,6 +98,11 @@ class HuffmanTree extends Code{
 		super(c);
 	}
 
+	public int compareTo(HuffmanTree other) {
+		
+		return super.compareTo(new Code(other.symbol, other.frequency));
+	}
+	
 	void print(String codeword) {
 		
 		if(l == null && r == null) {
@@ -113,4 +126,3 @@ class HuffmanTree extends Code{
 		print("");
 	}
 }
-
