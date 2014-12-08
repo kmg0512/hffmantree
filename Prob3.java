@@ -1,5 +1,3 @@
-package Assignment04;
-
 import java.util.*;
 
 public class Prob3 {
